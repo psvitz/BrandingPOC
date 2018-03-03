@@ -1,0 +1,72 @@
+<h1>Theme POC</h1>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-2">
+            <ul class="list-group themes-collection">
+                <li class="list-group-item theme " [ngClass]="theme.themeId == selectedTheme.themeId ? 'active':''"  *ngFor="let theme of themes" (click)="selectTheme(theme)">
+                    Theme {{theme.themeId}}
+                    <span *ngIf="currentTheme != null && theme.themeId === currentTheme.themeId" class="badge badge-warning badge-pill">Active</span>
+                </li>
+            </ul>
+
+            <div class="btn btn-success" (click)="addNewTheme()">
+                Add New Theme
+            </div>
+        </div>
+
+
+
+        <div class="col-md-10" *ngIf="selectedTheme != null" class="theme-editor">
+
+            <div class="">
+                <div class="panel-body">
+                    <div class="card-group">
+
+                        <div class="card">
+                            <div class="card-block">
+                                <h3 class="card-title">Main Color</h3>
+                                <input [(colorPicker)]="selectedTheme.mainColor" [style.background]="selectedTheme.mainColor" />
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-block">
+                                <h3 class="card-title">BG Color</h3>
+                                <input [(colorPicker)]="selectedTheme.mainBGColor" [style.background]="selectedTheme.mainBGColor" />
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-block">
+                                <h3 class="card-title">Font Color</h3>
+                                <input [(colorPicker)]="selectedTheme.fontColor" [style.background]="selectedTheme.fontColor" />
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-block">
+                                <h3 class="card-title">Font</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" id="btnSave" class="btn btn-default pull-right" (click)="saveTheme()">Save</button>
+                    <button *ngIf="selectedTheme.themeId > 0 && (currentTheme == null || selectedTheme.themeId != currentTheme.themeId)" type="button" id="btnSave" class="btn btn-warning pull-right" (click)="makeActive()">Make Active</button>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isLoading" class="loading">
+    <h1>Loading....</h1>
+</div>
