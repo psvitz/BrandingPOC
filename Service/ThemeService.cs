@@ -49,6 +49,22 @@ namespace BrandingPOC
             return _themes;
         }
 
+        public string GetThemeCSS(int themeId)
+        {
+            var theme = GetTheme(themeId);
+
+            string css = null;
+            if (theme != null)
+            {
+                css = _converter.ConvertTheme(theme);
+            }
+
+            return css;
+        }
+        public Theme GetTheme(int themeId)
+        {
+            return _themes.FirstOrDefault(x => x.ThemeId == themeId);
+        }
         public Theme GetCurrentTheme()
         {
             return _activeTheme;

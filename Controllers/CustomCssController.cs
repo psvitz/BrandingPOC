@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BrandingPOC
@@ -11,7 +12,22 @@ namespace BrandingPOC
 
         public ContentResult Index(int themeId)
         {
-            var themeCss = ThemeService.Instance.GetCurrentThemeCSS();
+            var themeCss = "";
+
+            if (themeId > 0)
+            {
+                var savedTheme = ThemeService.Instance.GetThemeCSS(themeId);
+                if(savedTheme != null && savedTheme != "")
+                {
+                    themeCss = savedTheme;
+                }
+            }
+
+            if(string.IsNullOrEmpty(themeCss))
+            {
+                themeCss = ThemeService.Instance.GetCurrentThemeCSS();
+            }
+                
 
             return Content(themeCss, "text/css");
         }

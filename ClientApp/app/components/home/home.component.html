@@ -54,8 +54,10 @@
                     </div>
                 </div>
                 <div>
+                    <a type="button" id="btnSave" class="btn btn-default pull-right" *ngIf="selectedTheme.themeId > 0 && (currentTheme == null || selectedTheme.themeId != currentTheme.themeId)" href="home?themeId={{selectedTheme.themeId}}">Preview</a>
+                    
                     <button type="button" id="btnSave" class="btn btn-default pull-right" (click)="saveTheme()">Save</button>
-                    <button *ngIf="selectedTheme.themeId > 0 && (currentTheme == null || selectedTheme.themeId != currentTheme.themeId)" type="button" id="btnSave" class="btn btn-warning pull-right" (click)="makeActive()">Make Active</button>
+                    <button *ngIf="selectedTheme.themeId > 0 && (currentTheme == null || selectedTheme.themeId != currentTheme.themeId)" type="button" id="btnSave" class="btn btn-warning pull-right" (click)="makeActive()">Set Active</button>
 
                 </div>
             </div>
