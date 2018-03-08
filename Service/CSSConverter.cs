@@ -20,7 +20,7 @@ namespace BrandingPOC
                 var varName = (CssVariableAttribute)themeVar.GetCustomAttributes(typeof(CssVariableAttribute), false).FirstOrDefault();
                 var value = themeVar.GetValue(theme);
 
-                cssVariables.Append($"{varName.VariableName}:{value}");
+                cssVariables.Append($"{varName.VariableName}:{value};");
             }
 
             var css = $":root{{{cssVariables}}}";
