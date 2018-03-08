@@ -1,0 +1,9 @@
+﻿body {
+    font-family: var(--font);
+    color: var(--font-color);
+    background: var(--main-bg-color);
+}
+
+.navbar-inverse {
+    background-color: var(--main-color);
+}

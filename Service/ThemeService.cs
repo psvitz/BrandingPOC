@@ -8,21 +8,21 @@ namespace BrandingPOC
     {
         private List<Theme> _themes;
         private Theme _activeTheme;
+        
+        public IConverter Converter { get; set; }
         private static ThemeService _instance;
-        private CSSConverter _converter;
 
         public static ThemeService Instance
         {
             get
             {
-                return _instance ?? (_instance = new ThemeService());
+                return _instance ??  (_instance = new ThemeService());
             }
         }
 
-        private ThemeService()
-        {
-            _converter = new CSSConverter();
 
+        private  ThemeService()
+        {
             _activeTheme = MakeDefaultTheme();
             _themes = new List<Theme>();
             _themes.Add(_activeTheme);
@@ -56,7 +56,7 @@ namespace BrandingPOC
             string css = null;
             if (theme != null)
             {
-                css = _converter.ConvertTheme(theme);
+                css = Converter.ConvertTheme(theme);
             }
 
             return css;
@@ -71,7 +71,7 @@ namespace BrandingPOC
         }
         public string GetCurrentThemeCSS()
         {
-            return _converter.ConvertTheme(_activeTheme);
+            return Converter.ConvertTheme(_activeTheme);
         }
         public void SetCurrentTheme(int themeId)
         {
@@ -87,9 +87,9 @@ namespace BrandingPOC
         {
             var theme = new Theme();
             theme.ThemeId = 1;
-            theme.FontColor = "#000000";
-            theme.MainColor = "#000000";
-            theme.MainBGColor = "#FFFFFF";
+            theme.FontColor = "#FF0000";
+            theme.MainColor = "#00FF00";
+            theme.MainBGColor = "#0000FF";
             theme.Font = "Roboto";
             return theme;
         }

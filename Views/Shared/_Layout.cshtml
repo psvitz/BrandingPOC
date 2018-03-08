@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,9 +7,12 @@
     <base href="~/" />
 
     <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/site.css" asp-append-version="true" />
+
+
 
     <link rel="stylesheet" href='@string.Format("/CustomCss/Index?themeId={0}", @Context.Request.Query["themeId"].ToString() != "" ? @Context.Request.Query["themeId"].ToString():"0")' asp-append-version="true" />
-    <link rel="stylesheet" href="~/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/branding-base.css" asp-append-version="true" />
 </head>
 <body>
     @RenderBody()

@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BrandingPOC.Service;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BrandingPOC.Controllers
 {
     [Route("api/[controller]")]
     public class ThemeController : Controller
     {
+        public ThemeController(IConverterFactory converterFactory)
+        {
+            ThemeService.Instance.Converter = converterFactory.Make();
+        }
+
         public IActionResult Index()
         {
             return View();
